@@ -10,9 +10,9 @@ class Zillashop
 
   def initialize
     conf = CONFIG && File.exists?(CONFIG) && YAML.load_file(CONFIG)[RAILS_ENV]
+    raise ConfigurationNotFoundError, "could not find the \"#{CONFIG}\" configuration file for Zillashop" unless conf
     @api_key = conf[:api_key]
     @publisher_id = conf[:publisher_id]
-    raise ConfigurationNotFoundError, "could not find the \"#{CONFIG}\" configuration file for Zillashop" unless conf
   end
 
   def product(options = {})
