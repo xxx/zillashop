@@ -1,0 +1,63 @@
+require 'net/http'
+require 'uri'
+
+class Zillashop
+  class ConfigurationNotFoundError; end
+
+  ENDPOINT_ROOT = "http://catalog.bizrate.com/services/catalog/v1/us/"
+
+  CONFIG = File.join(RAILS_ROOT, 'config', 'zillashop.yml')
+
+  def initialize
+    conf = CONFIG && File.exists?(CONFIG) && YAML.load_file(CONFIG)[RAILS_ENV]
+    @api_key = conf[:api_key]
+    @publisher_id = conf[:publisher_id]
+    raise ConfigurationNotFoundError, "could not find the \"#{CONFIG}\" configuration file for Zillashop" unless conf
+  end
+
+  def product(options = {})
+    search("product/?", options)
+  end
+
+  def taxonomy(options = {})
+    search("taxonomy/?", options)
+  end
+
+  def brand(options = {})
+    search("brands/?", options)
+  end
+
+  def merchant_info(options = {})
+    search("merchant/?", options)
+  end
+
+  private
+
+  def create_param_string(params)
+    result = params.map do |key, val|
+      "#{convert_parameter_for_url(key)}=#{CGI.escape(val.to_s)}"
+    end.join('&')
+
+    result.blank? ? '' : "&#{result}"
+  end
+
+  def convert_parameter_for_url(parm)
+    cam = parm.to_s.camelize
+    cam[0..0].downcase + cam[1..-1]
+  end
+
+  def search(endpoint, options = {})
+    url_str = "#{Zillashop::ENDPOINT_ROOT + endpoint}apiKey=#{@api_key}&publisherId=#{@publisher_id}" + create_param_string(options)
+    url = URI.parse(url_str)
+    response = Net::HTTP.start(url.host, url.port) do |http|
+      http.get("#{url.path}?#{url.query}")
+    end
+    
+    begin
+      Hash.from_xml(response.body)
+    rescue NoMethodError
+      {}
+    end
+  end
+
+end
