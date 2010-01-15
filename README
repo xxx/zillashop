@@ -1,7 +1,7 @@
 Zillashop
 =========
 
-A Ruby on Rails plugin for interacting with the Shopzilla API.
+A Ruby on Rails plugin for interacting with the ShopZilla API.
 
 # Configuration
 
@@ -38,6 +38,6 @@ Either the raw name from ShopZilla (e.g. 'maxPrice' or :maxPrice) or
 more Ruby-like naming (e.g. 'max_price' or :max_price) should work. Please see
 the ShopZilla documentation for their canonical list of parameters.
 
-Copyright (c) 2010 Michael Dungan, mpd@tennmandigital.com, released under the MIT license
+Copyright (c) 2010 Michael Dungan, michael@tennmandigital.com, released under the MIT license
 
 This plugin is not owned or endorsed by ShopZilla or BizRate in any way.
