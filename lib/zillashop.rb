@@ -16,19 +16,19 @@ class Zillashop
   end
 
   def product(options = {})
-    search("product/?", options)
+    search(:product, options)
   end
 
   def taxonomy(options = {})
-    search("taxonomy/?", options)
+    search(:taxonomy, options)
   end
 
   def brand(options = {})
-    search("brands/?", options)
+    search(:brands, options)
   end
 
   def merchant_info(options = {})
-    search("merchant/?", options)
+    search(:merchant, options)
   end
 
   private
@@ -47,7 +47,7 @@ class Zillashop
   end
 
   def search(endpoint, options = {})
-    url_str = "#{Zillashop::ENDPOINT_ROOT + endpoint}apiKey=#{@api_key}&publisherId=#{@publisher_id}" + create_param_string(options)
+    url_str = "#{Zillashop::ENDPOINT_ROOT + endpoint.to_s}/?apiKey=#{@api_key}&publisherId=#{@publisher_id}" + create_param_string(options)
     url = URI.parse(url_str)
     response = Net::HTTP.start(url.host, url.port) do |http|
       http.get("#{url.path}?#{url.query}")
