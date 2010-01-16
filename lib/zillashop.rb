@@ -11,8 +11,8 @@ class Zillashop
   def initialize
     conf = CONFIG && File.exists?(CONFIG) && YAML.load_file(CONFIG)[RAILS_ENV]
     raise ConfigurationNotFoundError, "could not find the \"#{CONFIG}\" configuration file for Zillashop" unless conf
-    @api_key = conf[:api_key]
-    @publisher_id = conf[:publisher_id]
+    @api_key = conf[:api_key] || conf["api_key"] || ''
+    @publisher_id = conf[:publisher_id] || conf["publisher_id"] || ''
   end
 
   def product(options = {})
@@ -33,18 +33,6 @@ class Zillashop
 
   private
 
-  def param_string(params)
-    params.reverse_merge! :api_key => @api_key, :publisher_id => @publisher_id
-    result = params.map do |key, val|
-      "#{parameter_for_url(key)}=#{CGI.escape(val.to_s)}"
-    end.join('&')
-  end
-
-  def parameter_for_url(parm)
-    cam = parm.to_s.camelize
-    cam[0..0].downcase + cam[1..-1]
-  end
-
   def search(endpoint, options = {})
     url_str = "#{Zillashop::ENDPOINT_ROOT + endpoint.to_s}/?" + param_string(options)
     url = URI.parse(url_str)
@@ -59,4 +47,15 @@ class Zillashop
     end
   end
 
+  def param_string(params)
+    params.reverse_merge! :api_key => @api_key, :publisher_id => @publisher_id
+    params.map do |key, val|
+      "#{parameter_for_url(key)}=#{CGI.escape(val.to_s)}"
+    end.join('&')
+  end
+
+  def parameter_for_url(parm)
+    cam = parm.to_s.camelize
+    cam[0..0].downcase + cam[1..-1]
+  end
 end
