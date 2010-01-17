@@ -16,7 +16,7 @@ class Zillashop
     end
 
     def size
-      @children.length
+      children.length
     end
 
     def xmlns
@@ -30,7 +30,7 @@ class Zillashop
     end
 
     def taxonomy_set
-      taxonomy_response['Taxonomy']["Categories"]
+      taxonomy_response['Taxonomy']["Categories"]["Category"]
     end
 
   end
