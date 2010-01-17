@@ -6,7 +6,7 @@ A Ruby on Rails plugin for interacting with the Shopzilla Catalog API.
 Installation
 ============
 
-`script/plugin install git://github.com/xxx/zillashop.git`
+    script/plugin install git://github.com/xxx/zillashop.git
 
 Configuration
 =============
@@ -38,12 +38,16 @@ Usage
     zilla.brand(:keyword => 'apple')
     zilla.merchant_info(:keyword => 'amazon')
 
-Search methods return a hash parsed from the XML results received from Shopzilla.
+Search methods return a result object created from the XML results received from Shopzilla.
+See the docs for more info.
 
 Other Shopzilla parameters can be passed into the search methods as well.
 Either the raw name from Shopzilla (e.g. `'maxPrice'` or `:maxPrice`) or
 more Ruby-like naming (e.g. `'max_price'` or `:max_price`) should work. Please see
 the Shopzilla documentation for their canonical list of parameters.
+
+Copyright & Disclaimer
+======================
 
 Copyright (c) 2010 Michael Dungan, michael@tennmandigital.com, released under the MIT license
 
