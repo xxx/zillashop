@@ -1,7 +1,7 @@
 Zillashop
 =========
 
-A Ruby on Rails plugin for interacting with the ShopZilla Catalog API.
+A Ruby on Rails plugin for interacting with the Shopzilla Catalog API.
 
 Installation
 ============
@@ -26,7 +26,7 @@ Create a `zillashop.yml` in app/config that looks something like...
       :publisher_id: 11111
 
 ... replacing the api_key and publisher_id placeholders with your own values
-received from ShopZilla.
+received from Shopzilla.
 
 Usage
 =====
@@ -38,13 +38,13 @@ Usage
     zilla.brand(:keyword => 'apple')
     zilla.merchant_info(:keyword => 'amazon')
 
-Search methods return a hash parsed from the XML results received from ShopZilla.
+Search methods return a hash parsed from the XML results received from Shopzilla.
 
-Other ShopZilla parameters can be passed into the search methods as well.
-Either the raw name from ShopZilla (e.g. `'maxPrice'` or `:maxPrice`) or
+Other Shopzilla parameters can be passed into the search methods as well.
+Either the raw name from Shopzilla (e.g. `'maxPrice'` or `:maxPrice`) or
 more Ruby-like naming (e.g. `'max_price'` or `:max_price`) should work. Please see
-the ShopZilla documentation for their canonical list of parameters.
+the Shopzilla documentation for their canonical list of parameters.
 
 Copyright (c) 2010 Michael Dungan, michael@tennmandigital.com, released under the MIT license
 
-This plugin is not owned or endorsed by ShopZilla or BizRate in any way.
+This plugin is not owned or endorsed by Shopzilla or BizRate in any way.
