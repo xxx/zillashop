@@ -24,6 +24,10 @@ class Zillashop
   end
 
   def taxonomy(options = {})
+    TaxonomyResultSet.new search(:taxonomy, options)
+  end
+
+  def taxonomy2(options = {})
     search(:taxonomy, options)
   end
 
