@@ -43,7 +43,7 @@ class Zillashop
   # Perform a brand search via the Shopzilla Catalog API
   #
   # @param [optional, Hash] options the options to pass to the query. See Shopzilla docs for list.
-  # @return [BrandResultSet] the set of results
+  # @return [BrandsResultSet] the set of results
   def brand(options = {})
     BrandsResultSet.new search(:brands, options)
   end
