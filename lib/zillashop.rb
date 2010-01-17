@@ -1,5 +1,7 @@
 require 'net/http'
 require 'uri'
+require 'zillashop/product_result_set'
+require 'zillashop/product_result'
 
 class Zillashop
   class ConfigurationNotFoundError; end
@@ -16,7 +18,7 @@ class Zillashop
   end
 
   def product(options = {})
-    search(:product, options)
+    ProductResultSet.new search(:product, options)
   end
 
   def taxonomy(options = {})
