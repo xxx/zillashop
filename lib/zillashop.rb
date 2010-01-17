@@ -2,6 +2,8 @@ require 'net/http'
 require 'uri'
 require 'zillashop/product_result_set'
 require 'zillashop/product_result'
+require 'zillashop/brands_result_set'
+require 'zillashop/brands_result'
 
 class Zillashop
   class ConfigurationNotFoundError; end
@@ -26,7 +28,7 @@ class Zillashop
   end
 
   def brand(options = {})
-    search(:brands, options)
+    BrandsResultSet.new search(:brands, options)
   end
 
   def merchant_info(options = {})
