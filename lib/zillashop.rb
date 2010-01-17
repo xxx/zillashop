@@ -5,6 +5,8 @@ require 'zillashop/product_result'
 require 'zillashop/brands_result_set'
 require 'zillashop/brands_result'
 
+# @author mpd
+# @version 1.0
 class Zillashop
   class ConfigurationNotFoundError; end
 
@@ -12,29 +14,45 @@ class Zillashop
 
   CONFIG = File.join(RAILS_ROOT, 'config', 'zillashop.yml')
 
-  def initialize
-    conf = CONFIG && File.exists?(CONFIG) && YAML.load_file(CONFIG)[RAILS_ENV]
-    raise ConfigurationNotFoundError, "could not find the \"#{CONFIG}\" configuration file for Zillashop" unless conf
+  # Create a new Zillashop instance
+  #
+  # @param [optional, String] config path to the config file. Defaults to RAILS_ROOT/config/zillashop.yml
+  def initialize(config = CONFIG)
+    conf = config && File.exists?(config) && YAML.load_file(config)[RAILS_ENV]
+    raise ConfigurationNotFoundError, "could not find the \"#{config}\" configuration file for Zillashop" unless conf
     @api_key = conf[:api_key] || conf["api_key"] || ''
     @publisher_id = conf[:publisher_id] || conf["publisher_id"] || ''
   end
 
+  # Perform a product search via the Shopzilla Catalog API
+  #
+  # @param [optional, Hash] options the options to pass to the query. See Shopzilla docs for list.
+  # @return [ProductResultSet] the set of results
   def product(options = {})
     ProductResultSet.new search(:product, options)
   end
 
+  # Perform a taxonomy search via the Shopzilla Catalog API
+  #
+  # @param [optional, Hash] options the options to pass to the query. See Shopzilla docs for list.
+  # @return [TaxonomyResultSet] the set of results
   def taxonomy(options = {})
     TaxonomyResultSet.new search(:taxonomy, options)
   end
 
-  def taxonomy2(options = {})
-    search(:taxonomy, options)
-  end
-
+  # Perform a brand search via the Shopzilla Catalog API
+  #
+  # @param [optional, Hash] options the options to pass to the query. See Shopzilla docs for list.
+  # @return [BrandResultSet] the set of results
   def brand(options = {})
     BrandsResultSet.new search(:brands, options)
   end
 
+  # Perform a merchant info search via the Shopzilla Catalog API
+  #
+  # @param [optional, Hash] options the options to pass to the query. See Shopzilla docs for list.
+  # @return [MerchantInfoResultSet] the set of results
+  # @todo make sure queries with :merchant_info => '814,815,816' do not escape the commas
   def merchant_info(options = {})
     MerchantInfoResultSet.new search(:merchant, options)
   end

@@ -1,7 +1,13 @@
 class Zillashop
+
+  # @author mpd
+  # @version 1.0
   class MerchantInfoResultSet
     attr_reader :merchants
 
+    # create a new result set for a merchant info query
+    #
+    # @param [Hash] hsh the merchant info results returned from Shopzilla
     def initialize(hsh)
       @hash = hsh
       if merchant_info_set.is_a? Hash
@@ -11,10 +17,16 @@ class Zillashop
       end
     end
 
+    # the number of merchants found
+    #
+    # @return [Fixnum] the number of merchants found
     def size
       @merchants.length
     end
 
+    # the XML namespace of the raw result set
+    #
+    # @return [String] the XML namespace
     def xmlns
       merchant_info_response["xmlns"]
     end
