@@ -4,7 +4,7 @@ class Zillashop
 
     def initialize(hsh)
       @hash = hsh
-      @set = product_set.nil? ? offer_set : product_set
+      @set = product_set || offer_set
 
       if !@set["Product"]
         @products = []
