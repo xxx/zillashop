@@ -32,7 +32,7 @@ class Zillashop
   end
 
   def merchant_info(options = {})
-    search(:merchant, options)
+    MerchantInfoResultSet.new search(:merchant, options)
   end
 
   private
