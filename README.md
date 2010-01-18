@@ -48,7 +48,7 @@ Please see the Shopzilla documentation for their canonical list of parameters.
 
 Full documentation online at [http://yardoc.org/docs/xxx-zillashop](http://yardoc.org/docs/xxx-zillashop)
 
-YARD documentation can be generated locally with the `yardoc` command if you havfe the yard gem installed.
+YARD documentation can be generated locally with the `yardoc` command if you have the yard gem installed.
 
 Copyright & Disclaimer
 ======================
