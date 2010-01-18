@@ -46,7 +46,7 @@ Either the raw name from Shopzilla (e.g. `'maxPrice'` or `:maxPrice`) or
 more Ruby-like naming (e.g. `'max_price'` or `:max_price`) should work.
 Please see the Shopzilla documentation for their canonical list of parameters.
 
-Full documentation online at http://yardoc.org/docs/xxx-zillashop
+Full documentation online at [http://yardoc.org/docs/xxx-zillashop](http://yardoc.org/docs/xxx-zillashop)
 
 YARD documentation can be generated locally with the `yardoc` command if you havfe the yard gem installed.
 
