@@ -61,8 +61,7 @@ class Zillashop
 
     # the probability
     #
-    # @return [Float] the probability
-    # @todo Undocumented field. What does this represent?
+    # @return [Float] the probability that this result matched the query
     def probability
       @hash["probability"].to_f
     end

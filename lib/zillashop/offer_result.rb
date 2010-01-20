@@ -12,8 +12,7 @@ class Zillashop
 
     # how heavy the offered product is to ship
     #
-    # @return [Float] the weight
-    # @todo figure out what this unit of measurement is. Shopzilla does not document this field
+    # @return [Float] the weight in pounds
     def ship_weight
       @hash["shipWeight"].to_f
     end

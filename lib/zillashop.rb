@@ -52,7 +52,7 @@ class Zillashop
   #
   # @param [optional, Hash] options the options to pass to the query. See Shopzilla docs for list.
   # @return [MerchantInfoResultSet] the set of results
-  # @todo make sure queries with :merchant_info => '814,815,816' do not escape the commas
+  # @todo make sure queries with :merchant_info => '814,815,816' do not escape the commas - Shopzilla says this is a known issue
   def merchant_info(options = {})
     MerchantInfoResultSet.new search(:merchant, options)
   end
