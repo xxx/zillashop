@@ -1,5 +1,5 @@
 # include Zillashop::TestHelper in your test/spec_helper file
-# to avoid hitting shipzilla during tests.
+# to avoid hitting Shopzilla during tests.
 class Zillashop
   module TestHelper
     def self.included(base)
