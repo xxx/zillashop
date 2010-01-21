@@ -17,6 +17,10 @@ Create a `zillashop.yml` in app/config that looks something like...
       :api_key: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
       :publisher_id: 11111
 
+    test:
+      :api_key: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+      :publisher_id: 11111
+
     staging:
       :api_key: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
       :publisher_id: 11111
@@ -49,6 +53,11 @@ Please see the Shopzilla documentation for their canonical list of parameters.
 Full documentation online at [http://yardoc.org/docs/xxx-zillashop](http://yardoc.org/docs/xxx-zillashop)
 
 YARD documentation can be generated locally with the `yardoc` command if you have the yard gem installed.
+
+Rails Test Environment
+======================
+
+To prevent the API from actually going out and hitting Shopzilla in your tests, just `include Zillashop::TestHelper` in your `test_helper.rb` or `spec_helper.rb`.
 
 Copyright & Disclaimer
 ======================
