@@ -68,7 +68,7 @@ class Zillashop
     
     begin
       Hash.from_xml(response.body)
-    rescue NoMethodError
+    rescue Exception => e
       {}
     end
   end
