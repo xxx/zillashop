@@ -9,6 +9,7 @@ require 'zillashop/brands_result'
 # @version 1.0
 class Zillashop
   class ConfigurationNotFoundError; end
+  class NoConnectionError; end
 
   ENDPOINT_ROOT = "http://catalog.bizrate.com/services/catalog/v1/us/"
 
@@ -62,8 +63,12 @@ class Zillashop
   def search(endpoint, options = {})
     url_str = "#{Zillashop::ENDPOINT_ROOT + endpoint.to_s}/?" + param_string(options)
     url = URI.parse(url_str)
-    response = Net::HTTP.start(url.host, url.port) do |http|
-      http.get("#{url.path}?#{url.query}")
+    begin
+      response = Net::HTTP.start(url.host, url.port) do |http|
+        http.get("#{url.path}?#{url.query}")
+      end
+    rescue SocketError
+      raise NoConnectionError
     end
     
     begin
