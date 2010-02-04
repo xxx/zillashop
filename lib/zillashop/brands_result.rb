@@ -3,6 +3,8 @@ class Zillashop
   # @author mpd
   # @version 1.0
   class BrandsResult
+    attr_accessor :model_id
+
     # create a new BrandsResult instance
     #
     # @param [Hash] hsh a brand result returned from ShopZilla

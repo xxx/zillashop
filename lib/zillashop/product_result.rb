@@ -3,6 +3,7 @@ class Zillashop
   # @author mpd
   # @version 1.0
   class ProductResult
+    attr_accessor :model_id
 
     # initialize a product that is offered by one or more merchants
     #

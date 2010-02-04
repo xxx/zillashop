@@ -3,6 +3,8 @@ class Zillashop
   # @author mpd
   # @version 1.0
   class OfferResult
+    attr_accessor :model_id
+
     # initalize an offer for a specific product from a specific merchant
     #
     # @param [Hash] hsh an offer result returned from Shopzilla
@@ -49,7 +51,11 @@ class Zillashop
     #
     # @return [Array] urls for a number of different-sized images of the product
     def images
-      @hash["Images"]["Image"]
+      begin
+        @hash["Images"]["Image"]
+      rescue NoMethodError
+        []
+      end
     end
 
     # product title

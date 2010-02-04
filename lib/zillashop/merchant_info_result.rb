@@ -3,7 +3,8 @@ class Zillashop
   # @author mpd
   # @version 1.0
   class MerchantInfoResult
-    
+    attr_accessor :model_id
+
     # create a new MerchantInfoResult instance
     #
     # @param [Hash] hsh a merchant info result returned from ShopZilla
