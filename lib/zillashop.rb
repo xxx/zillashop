@@ -10,11 +10,20 @@ require 'zillashop/taxonomy_result'
 require 'zillashop/merchant_info_result_set'
 require 'zillashop/merchant_info_result'
 
+module Net
+  class HTTP
+    alias :original_initialize :initialize
+    def initialize(*args)
+      original_initialize(*args)
+      @open_timeout ||= 5
+    end
+  end
+end
+
 # @author mpd
 # @version 1.0
 class Zillashop
   class ConfigurationNotFoundError; end
-  class NoConnectionError; end
 
   ENDPOINT_ROOT = "http://catalog.bizrate.com/services/catalog/v1/us/"
 
@@ -72,11 +81,7 @@ class Zillashop
       response = Net::HTTP.start(url.host, url.port) do |http|
         http.get("#{url.path}?#{url.query}")
       end
-    rescue SocketError
-      raise NoConnectionError
-    end
     
-    begin
       Hash.from_xml(response.body)
     rescue Exception => e
       {}
