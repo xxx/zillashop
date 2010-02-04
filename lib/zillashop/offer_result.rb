@@ -3,7 +3,7 @@ class Zillashop
   # @author mpd
   # @version 1.0
   class OfferResult
-    attr_accessor :model_id
+    attr_accessor :model
 
     # initalize an offer for a specific product from a specific merchant
     #

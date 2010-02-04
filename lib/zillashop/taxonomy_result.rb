@@ -4,7 +4,7 @@ class Zillashop
   # @version 1.0
   class TaxonomyResult
     attr_reader :children
-    attr_accessor :model_id
+    attr_accessor :model
     
     # create a new TaxonomyResult instance
     #

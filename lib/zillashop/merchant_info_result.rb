@@ -3,7 +3,7 @@ class Zillashop
   # @author mpd
   # @version 1.0
   class MerchantInfoResult
-    attr_accessor :model_id
+    attr_accessor :model
 
     # create a new MerchantInfoResult instance
     #
