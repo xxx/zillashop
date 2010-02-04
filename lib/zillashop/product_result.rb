@@ -16,7 +16,11 @@ class Zillashop
     #
     # @return [Array] urls for a number of different-sized images of the product
     def images
-      @hash["Images"]["Image"]
+      if @hash["Images"] and @hash["Images"]["Image"].respond_to?(:[])
+        @hash["Images"]["Image"]
+      else
+        []
+      end
     end
 
     # product title
