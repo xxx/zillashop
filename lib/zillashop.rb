@@ -2,8 +2,13 @@ require 'net/http'
 require 'uri'
 require 'zillashop/product_result_set'
 require 'zillashop/product_result'
+require 'zillashop/offer_result'
 require 'zillashop/brands_result_set'
 require 'zillashop/brands_result'
+require 'zillashop/taxonomy_result_set'
+require 'zillashop/taxonomy_result'
+require 'zillashop/merchant_info_result_set'
+require 'zillashop/merchant_info_result'
 
 # @author mpd
 # @version 1.0
