@@ -114,6 +114,13 @@ class Zillashop
       @hash["categoryId"].to_i
     end
 
+    # productId of the offered product
+    #
+    # @return [Fixnum] the productId
+    def product_id
+      @hash["productId"].to_i
+    end
+
     # id of the offered product
     #
     # @return [Fixnum] the id
